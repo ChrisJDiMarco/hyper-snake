@@ -1,0 +1,43 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="style.css"></head>
+<body tabindex="0">
+<canvas id="c"></canvas>
+<div id="slow"></div>
+<div id="flash"></div><div id="chroma"></div><div id="shieldTag">🛡 SHIELD READY</div><div id="fever"></div>
+<div id="demoDim"></div><div id="demoFade"></div><div id="demoBadge">● DEMO</div><div id="demoPrompt">Press any key / tap to play</div>
+<style>#demoDim,#demoFade{position:fixed;inset:0;pointer-events:none;opacity:0;transition:opacity .6s}#demoDim{background:radial-gradient(ellipse at 50% 55%,rgba(8,2,20,.25),rgba(8,2,20,.6))}body.demo #demoDim{opacity:1}#demoFade{background:#08021a}#demoFade.in{animation:dfade 1s ease-out}@keyframes dfade{0%{opacity:1}100%{opacity:0}}#demoBadge,#demoPrompt{position:fixed;pointer-events:none;opacity:0;transition:opacity .5s;font:700 10px/1 -apple-system,system-ui,sans-serif;letter-spacing:.2em;color:#ff7ad9;z-index:5}#demoBadge{top:14px;left:14px;padding:5px 8px;border:1px solid rgba(255,122,217,.5);border-radius:6px;background:rgba(20,5,35,.5)}#demoPrompt{bottom:10px;left:0;right:0;text-align:center;color:#b9a8ff;letter-spacing:.12em;font-weight:500}body.demo[data-mode=title] #demoBadge{opacity:1;animation:dbl 2s infinite}body.demo[data-mode=title] #demoPrompt{opacity:.75}@keyframes dbl{50%{opacity:.55}}body.demo[data-mode=title] #pops,body[data-mode=title] #banner,body[data-mode=title] #combo{display:none}</style>
+<div id="pops"></div>
+<div id="combo"><span id="comboN">x2</span><small>COMBO</small><div id="cbar"><i id="cfill"></i></div></div>
+<div id="banner"><b id="bnT"></b><small id="bnS"></small></div><div id="count"></div><div id="danger"></div><div id="tl" class="tarw">‹</div><div id="tr" class="tarw">›</div><canvas id="mini"></canvas>
+<div id="hud">
+  <div class="stat"><small>SCORE</small><b id="score">0</b></div>
+  <div class="stat mid"><small>LEVEL</small><b id="level">1</b><div id="pbar"><i id="pfill"></i></div><span id="plabel"></span></div>
+  <div class="stat r"><small>BEST</small><b id="best">0</b></div>
+</div>
+<button id="mute" class="ic" aria-label="Mute">♪</button>
+<button id="pause" class="ic" aria-label="Pause">❚❚</button>
+<div id="title" class="ov show">
+  <div class="logo"><span class="l1">HYPER</span><span class="l2">SNAKE</span></div>
+  <div class="bestline">BEST <b id="tbest">0</b></div>
+  <div class="target" id="ttarget"></div><div id="tweek"></div><div class="stats" id="tstats"></div><div id="tach"></div><ol id="ttop"></ol>
+  <div class="seg"><button class="vbtn" data-v="arena">ARENA</button><button class="vbtn" data-v="fp">FIRST PERSON</button></div>
+  <button class="play" id="startBtn">PLAY<kbd>SPACE</kbd></button><div class="hint sub">💰 payout = length×8 · 🌈 primer → combo x6 · ⏳ chrono freezes combo · 🍖 feast +2 length · 🕳 vortex · 🎯 bounty x5 · ⚡ zap · 🔄 reverse · 🎰 jackpot · 🛡 shields · 🍀 clover x3 · ❓ mystery boxes · ☄ L2 comets · FEVER x7 · 🎁 L5/L10 bonus stages · L3 pylons · L4 portals · L5 hopping gems · 🔴 L7 lasers</div>
+  <div class="hint" id="hintT">Arrows / WASD · Swipe · Tap left/right to turn · Space</div>
+</div>
+<div id="paused" class="ov"><div class="card"><h2>PAUSED</h2><div class="stats" id="pinfo"></div><div class="hint">Space / P resumes with a 3-2-1 · R restarts · M mutes</div><button class="play" id="resumeBtn">RESUME</button></div></div>
+<div id="over" class="ov">
+  <div class="card">
+    <h2 class="go">GAME OVER</h2>
+    <div id="newbest">NEW BEST!</div>
+    <div class="row"><div><small>SCORE</small><b id="oscore">0</b></div><div><small>BEST</small><b id="obest">0</b></div></div>
+    <div id="odelta" class="stats"></div><ol id="top"></ol>
+    <div class="stats" id="ostats"></div><div id="oach"></div>
+    <button class="play" id="againBtn">PLAY AGAIN<kbd>SPACE</kbd></button><button id="oview" class="vbtn on" style="margin-top:10px">TRY FIRST PERSON</button><div class="hint">Space or R to go again · 1/2 or V switches view</div>
+  </div>
+</div>
+<script src="js/gl.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+</body></html>
